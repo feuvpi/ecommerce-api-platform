@@ -35,7 +35,7 @@ export class ProductController {
   }
 
   @Delete(':id')
-  @UseGuards(new JwtAuthGuard(this?.jwtService, true))
+  @UseGuards(new JwtAuthGuard(this.jwtService, true))
   async delete(@Param('id') id: string): Promise<Product> {
     return await this.productService.delete(id);
   }

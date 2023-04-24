@@ -4,7 +4,7 @@ import { JwtService } from '../auth/jwt/jwt.service';
 
 @Injectable()
 export class JwtAuthGuard extends AuthGuard('jwt') {
-  constructor(private readonly jwtService?: JwtService, private readonly requireAdmin = false) {
+  constructor(private readonly jwtService: JwtService, private readonly requireAdmin = false) {
     super();
   }
 
