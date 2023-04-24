@@ -14,6 +14,12 @@ export class User {
 
   @Prop({ default: false })
   isAdmin: boolean;
+
+  toJSON() {
+    const { __v, password, ...object } = this.toJSON();
+    object.id = this._id;
+    return object;
+  }
 }
 
 export type UserDocument = User & Document;

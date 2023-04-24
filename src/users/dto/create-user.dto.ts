@@ -11,4 +11,6 @@ export class CreateUserDto {
   isAdmin: boolean;
 
   _id: Types.ObjectId = new Types.ObjectId();
+
+  toJSON() {}
 }
