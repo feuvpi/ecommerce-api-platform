@@ -1,0 +1,4 @@
+bash
+node_modules
+dist
+*.log
