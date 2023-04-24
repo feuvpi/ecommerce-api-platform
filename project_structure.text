@@ -1,0 +1,50 @@
+- .eslintrc.js
+- .gitignore
+- .prettierrc
+- .project_structure_ignore
+- nest-cli.json
+- package-lock.json
+- package.json
+- README.md
+- src
+  - app.controller.spec.ts
+  - app.controller.ts
+  - app.module.ts
+  - app.service.ts
+  - auth
+    - auth.controller.ts
+    - auth.module.ts
+    - auth.service.ts
+    - dto
+      - auth-credentials.dto.ts
+    - interfaces
+      - jwt-payload.interface.ts
+    - jwt
+      - jwt.service.spec.ts
+      - jwt.service.ts
+      - jwt.strategy.ts
+  - common
+    - decorators
+      - roles.decorator.ts
+    - enums
+      - roles.enums.ts
+    - guards
+      - role.guard.ts
+  - main.ts
+  - product
+    - product.controller.ts
+    - product.module.ts
+    - product.schema.ts
+    - product.service.ts
+  - users
+    - dto
+      - create-user.dto.ts
+    - user.controller.ts
+    - user.module.ts
+    - user.schema.ts
+    - user.service.ts
+- test
+  - app.e2e-spec.ts
+  - jest-e2e.json
+- tsconfig.build.json
+- tsconfig.json
