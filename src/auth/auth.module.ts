@@ -2,7 +2,7 @@ import { Module, forwardRef } from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthService } from './auth.service';
-import { UserModule } from '../users/user.module';
+import { UserModule } from '../modules/users/user.module';
 import { PassportModule } from '@nestjs/passport';
 
 const passportModule = PassportModule.register({ defaultStrategy: 'jwt' });

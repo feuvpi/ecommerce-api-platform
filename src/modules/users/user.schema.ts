@@ -2,11 +2,13 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 
-export interface UserDocument extends Document {
+export interface UserDocument extends User, Document {
+  _id: Types.ObjectId;
   username: string;
   password: string;
   isAdmin: boolean;
   comparePassword(password: string): Promise<boolean>;
+  toJSON: () => Omit<User, 'password' | '__v'> & { id: Types.ObjectId };
 }
 
 // Define a Mongoose schema for the User model

@@ -2,9 +2,9 @@ import { Controller, Get, Post, Put, Delete, Param, Body, UseGuards } from '@nes
 import { ProductService } from './product.service';
 import { Product } from './product.schema';
 import { AuthGuard } from '@nestjs/passport';
-import { RolesGuard } from '../common/guards/role.guard';
-import { Role } from '../common/enums/roles.enums';
-import { Roles } from '../common/decorators/roles.decorator';
+import { RolesGuard } from '../../common/guards/role.guard';
+import { Role } from '../../common/enums/roles.enums';
+import { Roles } from '../../common/decorators/roles.decorator';
 
 @Controller('products')
 export class ProductController {
