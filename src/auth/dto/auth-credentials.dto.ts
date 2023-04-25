@@ -12,4 +12,7 @@ export class AuthCredentialsDto {
   _id: Types.ObjectId;
 
   isAdmin: boolean;
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  toJSON() {}
 }

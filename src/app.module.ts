@@ -3,19 +3,19 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
-import { ProductModule } from './product/product.module';
 import * as mongoose from 'mongoose';
 import * as dotenv from 'dotenv';
-
+import { ConfigModule, ConfigService } from '@nestjs/config';
 dotenv.config();
 
 @Module({
-  imports: [MongooseModule.forRoot(process.env.MONGODB_URI), ProductModule, AuthModule, ProductModule],
+  imports: [MongooseModule.forRoot(process.env.MONGODB_URI), AuthModule, ConfigModule.forRoot()],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule implements OnModuleInit {
-  constructor() {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  constructor(private readonly configService: ConfigService) {} // inject ConfigService into AppModule
 
   async onModuleInit() {
     try {

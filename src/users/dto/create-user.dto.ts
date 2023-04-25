@@ -12,5 +12,6 @@ export class CreateUserDto {
 
   _id: Types.ObjectId = new Types.ObjectId();
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   toJSON() {}
 }
