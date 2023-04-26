@@ -22,7 +22,7 @@ export class User {
 
   // Use the "select: false" option to prevent this property from being included
   // in query results by default (for security reasons)
-  @Prop({ required: true, select: false })
+  @Prop({ required: true, select: true })
   password: string;
 
   @Prop({ default: false })
