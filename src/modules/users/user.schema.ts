@@ -14,7 +14,7 @@ export interface UserDocument extends User, Document {
 // Define a Mongoose schema for the User model
 @Schema()
 export class User {
-  @Prop({ default: new Types.ObjectId(), type: Types.ObjectId })
+  @Prop({ type: Types.ObjectId })
   _id: Types.ObjectId;
 
   @Prop({ required: true })

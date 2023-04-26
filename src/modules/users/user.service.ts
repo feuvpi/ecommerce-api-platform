@@ -7,9 +7,9 @@ import { User, UserDocument } from './user.schema';
 export class UserService {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
-  async findById(id: string): Promise<User | null> {
+  async findById(id: string): Promise<UserDocument | null> {
     try {
-      const user = await this.userModel.findById(id).exec();
+      const user = (await this.userModel.findById(id).exec()) as UserDocument;
       if (!user) {
         throw new NotFoundException('User not found');
       }
@@ -21,7 +21,7 @@ export class UserService {
 
   async findByUsername(username: string): Promise<UserDocument | null> {
     try {
-      const user = await this.userModel.findOne({ username }).exec() as UserDocument;
+      const user = (await this.userModel.findOne({ username }).exec()) as UserDocument;
       if (!user) {
         throw new NotFoundException('User not found');
       }
@@ -43,7 +43,7 @@ export class UserService {
   async create(user: User): Promise<User> {
     const createdUser = new this.userModel(user);
     return await createdUser.save().catch((error) => {
-      throw new Error(`Error creating user: ${error.message}`);
+      throw new Error(`${error.message}`);
     });
   }
 

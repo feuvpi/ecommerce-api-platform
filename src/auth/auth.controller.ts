@@ -9,7 +9,7 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('/login')
-  @UseGuards(AuthGuard('local'))
+  @UseGuards(AuthGuard('jwt'))
   async login(@Body() authCredentialsDto: AuthCredentialsDto) {
     return this.authService.login(authCredentialsDto);
   }

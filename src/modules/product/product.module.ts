@@ -7,7 +7,6 @@ import { AuthModule } from 'src/auth/auth.module';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtService } from '@nestjs/jwt';
 import { UserModule } from '../users/user.module';
-import { PassportModule } from '@nestjs/passport';
 
 @Module({
   imports: [

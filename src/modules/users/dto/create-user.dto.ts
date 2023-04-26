@@ -1,5 +1,4 @@
 import { IsNotEmpty } from 'class-validator';
-import { Types } from 'mongoose';
 
 export class CreateUserDto {
   @IsNotEmpty()
@@ -9,8 +8,6 @@ export class CreateUserDto {
   password: string;
 
   isAdmin: boolean;
-
-  _id: Types.ObjectId = new Types.ObjectId();
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   toJSON() {}
