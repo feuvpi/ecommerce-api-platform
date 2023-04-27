@@ -13,7 +13,8 @@ export class AuthService {
   async validateUser(payload: JwtPayload): Promise<any> {
     // Find the user in the database by their ID (which is the username in this case)
     const user = await this.usersService.findByUsername(payload.username);
-    console.log(payload.password);
+    console.log(payload);
+    console.log(`password:` + payload.password);
     console.log(user);
     console.log(await user.comparePassword(payload.password));
     // If a user is found and their password is correct, return the user object

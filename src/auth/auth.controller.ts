@@ -20,7 +20,7 @@ export class AuthController {
 
   @Post('/test')
   @UseGuards(AuthGuard('jwt'))
-  test() {
+  async test(@Body() authCredentialsDto: AuthCredentialsDto) {
     return { message: 'This route is protected by JWT' };
   }
 }
