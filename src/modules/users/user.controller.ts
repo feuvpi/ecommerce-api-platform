@@ -1,6 +1,9 @@
 import { Controller, Get, UseGuards, Param, Injectable } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { UserService } from './user.service';
+import { RolesGuard } from '../../common/guards/role.guard';
+import { Role } from '../../common/enums/roles.enums';
+import { Roles } from '../../common/decorators/roles.decorator';
 
 @Controller('users')
 @Injectable()
@@ -13,7 +16,8 @@ export class UsersController {
     return this.userService.findById(id);
   }
 
-  @UseGuards(AuthGuard())
+  @Roles(Role.Admin)
+  @UseGuards(RolesGuard)
   @Get()
   async findAll() {
     return this.userService.findAll();

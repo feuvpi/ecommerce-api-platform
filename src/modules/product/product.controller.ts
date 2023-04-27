@@ -1,7 +1,6 @@
 import { Controller, Get, Post, Put, Delete, Param, Body, UseGuards } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { Product } from './product.schema';
-import { AuthGuard } from '@nestjs/passport';
 import { RolesGuard } from '../../common/guards/role.guard';
 import { Role } from '../../common/enums/roles.enums';
 import { Roles } from '../../common/decorators/roles.decorator';
@@ -11,13 +10,11 @@ export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   @Get()
-  @UseGuards(AuthGuard())
   async findAll(): Promise<Product[]> {
     return await this.productService.findAll();
   }
 
   @Get(':id')
-  @UseGuards(AuthGuard('jwt'))
   async findOne(@Param('id') id: string): Promise<Product> {
     return await this.productService.findById(id);
   }
