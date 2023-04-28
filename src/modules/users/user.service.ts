@@ -7,18 +7,6 @@ import { User, UserDocument } from './user.schema';
 export class UserService {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
-  async findById(id: string): Promise<UserDocument | null> {
-    try {
-      const user = (await this.userModel.findById(id).exec()) as UserDocument;
-      if (!user) {
-        throw new NotFoundException('User not found');
-      }
-      return user;
-    } catch (error) {
-      throw new NotFoundException('User not found');
-    }
-  }
-
   async findByUsername(username: string): Promise<UserDocument | null> {
     try {
       const user = (await this.userModel.findOne({ username }).exec()) as UserDocument;

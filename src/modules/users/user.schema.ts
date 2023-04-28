@@ -1,12 +1,14 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 import * as bcrypt from 'bcrypt';
+import { Role } from '../../auth/guards/enums/roles.enums';
 
 export interface UserDocument extends User, Document {
   _id: Types.ObjectId;
   username: string;
   password: string;
   isAdmin: boolean;
+  roles: Role[];
   comparePassword(password: string): Promise<boolean>;
   toJSON: () => Omit<User, 'password' | '__v'> & { id: Types.ObjectId };
 }
@@ -28,10 +30,13 @@ export class User {
   @Prop({ default: false })
   isAdmin: boolean;
 
+  @Prop({ type: [String], enum: Object.values(Role), default: [] })
+  roles: Role[];
+
   // Define a custom toJSON method to remove the version field and password
   // field from the serialized object and replace the _id field with an id field
-  toJSON() {
-    const { __v, password, ...object } = this.toJSON();
+  toJSON(this: UserDocument) {
+    const { __v, password, ...object } = this.toObject();
     object.id = this._id;
     return object;
   }

@@ -1,24 +1,18 @@
 import { Controller, Get, UseGuards, Param, Injectable } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { UserService } from './user.service';
-import { RolesGuard } from '../../common/guards/role.guard';
-import { Role } from '../../common/enums/roles.enums';
-import { Roles } from '../../common/decorators/roles.decorator';
+import { RolesGuard } from '../../auth/guards/role.guard';
+import { Role } from '../../auth/guards/enums/roles.enums';
+import { Roles } from '../../auth/guards/decorators/roles.decorator';
 
 @Controller('users')
 @Injectable()
 export class UsersController {
   constructor(private readonly userService: UserService) {}
 
-  @UseGuards(AuthGuard())
-  @Get(':id')
-  async findOne(@Param('id') id: string) {
-    return this.userService.findById(id);
-  }
-
-  @Roles(Role.Admin)
-  @UseGuards(RolesGuard)
   @Get()
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles(Role.Admin)
   async findAll() {
     return this.userService.findAll();
   }

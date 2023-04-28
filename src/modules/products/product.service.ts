@@ -42,9 +42,14 @@ export class ProductService {
 
   async delete(id: string): Promise<Product> {
     try {
-      return await this.productModel.findByIdAndDelete(id).exec();
+      const deletedProduct = await this.productModel.findByIdAndDelete(id).exec();
+      if (deletedProduct) {
+        return deletedProduct;
+      } else {
+        throw new Error(`Não foi possível excluir o produto com o ID ${id}`);
+      }
     } catch (error) {
-      throw new Error(`Could not delete product with ID ${id}: ${error.message}`);
+      throw new Error(`Não foi possível excluir o produto com o ID ${id}: ${error.message}`);
     }
   }
 }

@@ -27,67 +27,68 @@
       - auth-credentials.dto.d.ts
       - auth-credentials.dto.js
       - auth-credentials.dto.js.map
+    - guards
+      - decorators
+        - roles.decorator.d.ts
+        - roles.decorator.js
+        - roles.decorator.js.map
+      - enums
+        - roles.enums.d.ts
+        - roles.enums.js
+        - roles.enums.js.map
+      - role.guard.d.ts
+      - role.guard.js
+      - role.guard.js.map
     - interfaces
       - jwt-payload.interface.d.ts
       - jwt-payload.interface.js
       - jwt-payload.interface.js.map
     - jwt
-      - jwt.service.d.ts
-      - jwt.service.js
-      - jwt.service.js.map
       - jwt.strategy.d.ts
       - jwt.strategy.js
       - jwt.strategy.js.map
-  - common
-    - decorators
-      - roles.decorator.d.ts
-      - roles.decorator.js
-      - roles.decorator.js.map
-    - enums
-      - roles.enums.d.ts
-      - roles.enums.js
-      - roles.enums.js.map
-    - guards
-      - role.guard.d.ts
-      - role.guard.js
-      - role.guard.js.map
+    - local.strategy.d.ts
+    - local.strategy.js
+    - local.strategy.js.map
   - main.d.ts
   - main.js
   - main.js.map
-  - product
-    - product.controller.d.ts
-    - product.controller.js
-    - product.controller.js.map
-    - product.module.d.ts
-    - product.module.js
-    - product.module.js.map
-    - product.schema.d.ts
-    - product.schema.js
-    - product.schema.js.map
-    - product.service.d.ts
-    - product.service.js
-    - product.service.js.map
+  - modules
+    - products
+      - product.controller.d.ts
+      - product.controller.js
+      - product.controller.js.map
+      - product.module.d.ts
+      - product.module.js
+      - product.module.js.map
+      - product.schema.d.ts
+      - product.schema.js
+      - product.schema.js.map
+      - product.service.d.ts
+      - product.service.js
+      - product.service.js.map
+    - users
+      - dto
+        - create-user.dto.d.ts
+        - create-user.dto.js
+        - create-user.dto.js.map
+      - user.controller.d.ts
+      - user.controller.js
+      - user.controller.js.map
+      - user.module.d.ts
+      - user.module.js
+      - user.module.js.map
+      - user.schema.d.ts
+      - user.schema.js
+      - user.schema.js.map
+      - user.service.d.ts
+      - user.service.js
+      - user.service.js.map
   - tsconfig.build.tsbuildinfo
-  - users
-    - dto
-      - create-user.dto.d.ts
-      - create-user.dto.js
-      - create-user.dto.js.map
-    - user.controller.d.ts
-    - user.controller.js
-    - user.controller.js.map
-    - user.module.d.ts
-    - user.module.js
-    - user.module.js.map
-    - user.schema.d.ts
-    - user.schema.js
-    - user.schema.js.map
-    - user.service.d.ts
-    - user.service.js
-    - user.service.js.map
 - nest-cli.json
 - package-lock.json
 - package.json
+- project_structure.text
 - README.md
 - src
   - app.controller.spec.ts
@@ -100,32 +101,31 @@
     - auth.service.ts
     - dto
       - auth-credentials.dto.ts
+    - guards
+      - decorators
+        - roles.decorator.ts
+      - enums
+        - roles.enums.ts
+      - role.guard.ts
     - interfaces
       - jwt-payload.interface.ts
     - jwt
-      - jwt.service.spec.ts
-      - jwt.service.ts
       - jwt.strategy.ts
-  - common
-    - decorators
-      - roles.decorator.ts
-    - enums
-      - roles.enums.ts
-    - guards
-      - role.guard.ts
+    - local.strategy.ts
   - main.ts
-  - product
-    - product.controller.ts
-    - product.module.ts
-    - product.schema.ts
-    - product.service.ts
-  - users
-    - dto
-      - create-user.dto.ts
-    - user.controller.ts
-    - user.module.ts
-    - user.schema.ts
-    - user.service.ts
+  - modules
+    - products
+      - product.controller.ts
+      - product.module.ts
+      - product.schema.ts
+      - product.service.ts
+    - users
+      - dto
+        - create-user.dto.ts
+      - user.controller.ts
+      - user.module.ts
+      - user.schema.ts
+      - user.service.ts
 - test
   - app.e2e-spec.ts
   - jest-e2e.json

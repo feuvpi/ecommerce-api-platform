@@ -1,9 +1,10 @@
 import { Controller, Get, Post, Put, Delete, Param, Body, UseGuards } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { Product } from './product.schema';
-import { RolesGuard } from '../../common/guards/role.guard';
-import { Role } from '../../common/enums/roles.enums';
-import { Roles } from '../../common/decorators/roles.decorator';
+import { RolesGuard } from '../../auth/guards/role.guard';
+import { Role } from '../../auth/guards/enums/roles.enums';
+import { Roles } from '../../auth/guards/decorators/roles.decorator';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('products')
 export class ProductController {
@@ -20,22 +21,22 @@ export class ProductController {
   }
 
   @Post()
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Roles(Role.Admin)
-  @UseGuards(RolesGuard)
   async create(@Body() product: Product): Promise<Product> {
     return await this.productService.create(product);
   }
 
   @Put(':id')
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Roles(Role.Admin)
-  @UseGuards(RolesGuard)
   async update(@Param('id') id: string, @Body() product: Product): Promise<Product> {
     return await this.productService.update(id, product);
   }
 
   @Delete(':id')
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Roles(Role.Admin)
-  @UseGuards(RolesGuard)
   async delete(@Param('id') id: string): Promise<Product> {
     return await this.productService.delete(id);
   }

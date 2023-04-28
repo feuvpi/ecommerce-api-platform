@@ -2,29 +2,20 @@ import { Injectable, UnauthorizedException, HttpException, HttpStatus } from '@n
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from '../modules/users/user.service';
 import { User } from '../modules/users/user.schema';
-import { JwtPayload } from '../auth/interfaces/jwt-payload.interface';
 import { Types } from 'mongoose';
 import { CreateUserDto } from '../modules/users/dto/create-user.dto';
+import decode from 'jwt-decode';
 
 @Injectable()
 export class AuthService {
   constructor(private readonly usersService: UserService, private readonly jwtService: JwtService) {}
 
-  async validateUser(payload: JwtPayload): Promise<any> {
-    // Find the user in the database by their ID (which is the username in this case)
-    const user = await this.usersService.findByUsername(payload.username);
-    console.log(payload);
-    console.log(`password:` + payload.password);
-    console.log(user);
-    console.log(await user.comparePassword(payload.password));
-    // If a user is found and their password is correct, return the user object
-    if (user && (await user.comparePassword(payload.password))) {
-      // Remove the password field from the user object
-      const { ...result } = user.toJSON();
+  async validateUser(username: string, pass: string): Promise<any> {
+    const user = await this.usersService.findByUsername(username);
+    if (user && user.comparePassword(pass)) {
+      const { password, ...result } = user;
       return result;
     }
-
-    // If the user is not found or their password is incorrect, return null
     return null;
   }
 
@@ -56,12 +47,16 @@ export class AuthService {
     const foundUser = await this.usersService.findByUsername(username);
 
     if (foundUser && (await foundUser.comparePassword(password))) {
-      const payload = { username: foundUser.username, sub: foundUser._id };
+      const payload = { username: foundUser.username, sub: foundUser._id, roles: user.roles };
       return {
         access_token: this.jwtService.sign(payload),
       };
     }
 
     throw new UnauthorizedException('Invalid username or password');
+  }
+
+  decode() {
+    return decode(localStorage.getItem('token'));
   }
 }
