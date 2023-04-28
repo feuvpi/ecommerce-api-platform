@@ -29,7 +29,9 @@ export class UserService {
   }
 
   async create(user: User): Promise<User> {
+    console.log('userservice');
     const createdUser = new this.userModel(user);
+    console.log(createdUser);
     return await createdUser.save().catch((error) => {
       throw new Error(`${error.message}`);
     });

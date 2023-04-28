@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Put, Delete, Param, Body, UseGuards } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { Product } from './product.schema';
-import { RolesGuard } from '../../auth/guards/role.guard';
+import { RolesGuard } from '../../auth/guards/guards/role.guard';
 import { Role } from '../../auth/guards/enums/roles.enums';
 import { Roles } from '../../auth/guards/decorators/roles.decorator';
 import { AuthGuard } from '@nestjs/passport';

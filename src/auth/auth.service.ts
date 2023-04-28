@@ -21,13 +21,14 @@ export class AuthService {
 
   async register(createUserDto: CreateUserDto): Promise<any> {
     try {
+      console.log('entrei2');
       const user = new User();
       user._id = new Types.ObjectId();
       user.username = createUserDto.username;
       user.password = createUserDto.password;
-      user.isAdmin = createUserDto.isAdmin;
-
+      console.log(user);
       const { password, ...result } = await this.usersService.create(user);
+      console.log(result);
       const payload = { username: user.username, sub: result._id };
       return {
         access_token: this.jwtService.sign(payload),

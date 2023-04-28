@@ -7,7 +7,9 @@ import * as mongoose from 'mongoose';
 import * as dotenv from 'dotenv';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ProductModule } from './modules/products/product.module';
+import { UserModule } from './modules/users/user.module';
 import { PassportModule } from '@nestjs/passport';
+
 dotenv.config();
 
 @Module({
@@ -16,6 +18,7 @@ dotenv.config();
     AuthModule,
     ConfigModule.forRoot(),
     ProductModule,
+    UserModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
   ],
   controllers: [AppController],

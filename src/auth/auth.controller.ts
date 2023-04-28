@@ -5,7 +5,7 @@ import { AuthCredentialsDto } from './dto/auth-credentials.dto';
 import { CreateUserDto } from '../modules/users/dto/create-user.dto';
 import { Roles } from './guards/decorators/roles.decorator';
 import { Role } from './guards/enums/roles.enums';
-import { RolesGuard } from './guards/role.guard';
+import { RolesGuard } from './guards/guards/role.guard';
 //import { JwtAuthGuard } from '@nestjs/jwt';
 
 @Controller('auth')
@@ -18,8 +18,9 @@ export class AuthController {
     return this.authService.login(authCredentialsDto);
   }
 
-  @Post('register')
+  @Post('/register')
   async register(@Body() createUserDto: CreateUserDto) {
+    console.log(createUserDto);
     return this.authService.register(createUserDto);
   }
 
