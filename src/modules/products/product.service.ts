@@ -52,4 +52,12 @@ export class ProductService {
       throw new Error(`Não foi possível excluir o produto com o ID ${id}: ${error.message}`);
     }
   }
+
+  async findLast(): Promise<Product> {
+    try {
+      return await this.productModel.findOne().sort({ $natural: -1 }).limit(1).exec();
+    } catch (error) {
+      throw new Error(`Could not find last product: ${error.message}`);
+    }
+  }
 }

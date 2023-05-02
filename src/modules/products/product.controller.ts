@@ -20,6 +20,11 @@ export class ProductController {
     return await this.productService.findById(id);
   }
 
+  @Get('last')
+  async findLast(): Promise<Product> {
+    return await this.productService.findLast();
+  }
+
   @Post()
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Roles(Role.Admin)
